@@ -1,0 +1,23 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <div class="w-full h-[calc(100vh-120px)] flex flex-col items-center justify-center gap-4 overflow-hidden">
+    <div
+      class="w-full h-full absolute z-1 flex items-center justify-center font-bold text-[240px] sm:text-[280px] md:text-[400px] font-title text-neutral-300 select-none pointer-events-none"
+    >
+      404
+    </div>
+    <div class="w-full z-2 flex flex-col items-center justify-center gap-4">
+      <h1 class="text-center text-4xl font-bold font-title tracking-wide text-balance">Página no encontrada</h1>
+      <p class="text-center text-base font-text text-balance">Lo sentimos, la página que buscas no existe o ha sido movida.</p>
+      <a
+        href="/"
+        class="w-auto h-9.5 px-5 flex items-center justify-center rounded-md text-sm font-mono text-neutral-50 bg-neutral-950 hover:bg-sky-700 transition-all duration-300 ease-out"
+        >Volver al Inicio</a
+      >
+    </div>
+  </div>
+</Layout>

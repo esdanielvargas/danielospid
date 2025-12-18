@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+
+export interface Props {
+  id?: string;
+  path: string;
+  title: string;
+  type: "Sencillo" | "EP" | "Álbum";
+  status: "public" | "private";
+  artists: string[];
+  covers?: string[];
+  date?: any;
+}
+const { path, title, type, artists, covers, } = Astro.props;
+---
+
+<a
+  href={`/music/${path}`}
+  class="w-full grid grid-cols-1 grid-rows-4 gap-1 col-span-3 row-span-4"
+>
+  <div
+    class="w-full aspect-square relative rounded-md bg-neutral-50 border border-neutral-200 overflow-hidden row-span-3"
+  >
+    {
+      covers && covers.length > 0 ? (
+        <Image
+          src={covers[0]}
+          alt={title}
+          width={297}
+          height={297}
+          loading="eager"
+          class="size-full object-cover object-center select-none pointer-events-none"
+        />
+      ) : null
+    }
+    <div
+      class="bg-neutral-950/50 absolute bottom-1 right-1 rounded-sm px-1 text-xs text-neutral-50"
+    >
+      Canciones
+    </div>
+  </div>
+  <div class="w-full -border row-span-1">
+    <h3 class="font-medium text-md font-sans hover:underline">
+      {title}
+    </h3>
+    <p class="text-sm">{`${artists.join(", ")} - ${type}`}</p>
+  </div>
+</a>

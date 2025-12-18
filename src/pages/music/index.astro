@@ -1,0 +1,20 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import MusicFilter from "../../components/MusicFilter";
+
+const music = [
+  {
+    id: "",
+    path: "drop-tracks",
+    title: "Drop Tracks",
+    type: "EP",
+    status: "public",
+    covers: ["/images/covers/drop-tracks.webp"],
+    artists: ["Daniel Ospid"],
+  },
+];
+---
+
+<Layout>
+  <MusicFilter music={music} />
+</Layout>

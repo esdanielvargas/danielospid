@@ -1,0 +1,22 @@
+---
+// Este bloque es server — aquí NO llamamos Firestore.
+---
+
+<div id="usuarios" class="w-full min-h-screen "></div>
+
+<script type="module">
+    // import { db } from '../firebase';
+    // import { collection, getDocs } from "firebase/firestore";
+
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
+
+    async function loadUsers() {
+        const snapshot = await getDocs(collection(db, "music"));
+        const users = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        console.log("users: ", users);
+        document.getElementById("usuarios").innerText = JSON.stringify(users, null, 2);
+    }
+
+    loadUsers();
+</script>

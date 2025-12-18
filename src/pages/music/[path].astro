@@ -1,0 +1,142 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  return [
+    { params: { path: "drop-tracks" } },
+  ];
+}
+
+const { path } = Astro.params;
+
+const music = [
+  {
+    id: "",
+    path: "drop-tracks",
+    title: "Drop Tracks",
+    type: "EP",
+    status: "public",
+    covers: ["/images/covers/drop-tracks.webp"],
+    artists: ["Daniel Ospid"],
+    songs: [
+      {
+        title: "Raindrop",
+        duration: "4:30",
+      },
+      {
+        title: "Clouds",
+        duration: "4:00",
+      },
+      {
+        title: "Just Me",
+        duration: "3:30",
+      },
+      {
+        title: "Waiting",
+        duration: "3:35",
+      },
+      {
+        title: "Look At Me",
+        duration: "3:33",
+      },
+      {
+        title: "Thunder",
+        duration: "3:00",
+      },
+    ],
+  },
+  {
+    id: "",
+    path: "contigo",
+    title: "Contigo",
+    type: "Sencillo",
+    status: "public",
+    covers: ["/images/covers/contigo.webp"],
+    artists: ["Daniel Ospid"],
+    songs: [
+      {
+        title: "Contigo",
+        duration: "2:04",
+      },
+    ],
+  },
+  {
+    id: "",
+    path: "ni-siquiera-sabes-quien-soy",
+    title: "Ni Siquiera Sabes Quién Soy",
+    type: "Sencillo",
+    status: "private",
+    covers: ["/images/covers/ni-siquiera-sabes-quien-soy.webp"],
+    artists: ["Daniel Ospid"],
+    songs: [
+      {
+        title: "Ni Siquiera Sabes Quién Soy",
+        duration: "3:13",
+      },
+    ],
+  },
+];
+---
+
+<Layout>
+  <div class="w-full my-5 flex items-center justify-center">
+    {
+      music
+        .filter((item) => item.path === path)
+        .map((item) => (
+          <div
+            class="w-full max-w-300 mx-auto flex flex-col md:flex-row gap-6 md:gap-10"
+          >
+            {/* Imágenes */}
+            <div class="w-full">
+              <img
+                src={
+                  item.covers && item.covers.length > 0 ? item.covers[0] : ""
+                }
+                alt={item.title}
+                class="size-full aspect-square rounded-md object-cover object-center"
+              />
+            </div>
+            {/* Detalles */}
+            <div class="w-full flex flex-col">
+              {/* Título y Precio */}
+              <div class="w-full mb-4.5 flex flex-col items-start justify-start">
+                <h2 class="font-bold text-3xl mb-2.5">{item.title}</h2>
+              </div>
+              {/* Acciones */}
+              <div class="w-full mb-4.5 flex flex-col items-start justify-start" />
+              {/* Lista de canciones */}
+              <div class="w-full mb-4.5 flex flex-col items-start justify-start">
+                <h3 class="font-bold text-sm font-mono mb-2.5">
+                  Lista de canciones
+                </h3>
+                <ol class="w-full">
+                  {item.songs && item.songs.length > 0
+                    ? item.songs.map((song, index) => (
+                        <li class="mb-1 flex justify-between w-full text-xs font-mono leading-loose">
+                          <span>{`${index + 1}. ${song.title}`}</span>
+                          <span>{song.duration}</span>
+                        </li>
+                      ))
+                    : null}
+                  <li />
+                </ol>
+              </div>
+              {/* Info 1 */}
+              <div class="w-full mb-4.5 flex flex-col items-start justify-start" />
+              {/* Info 2 */}
+              <div class="w-full mb-4.5 flex flex-col items-start justify-start" />
+              <div class="hidden ">
+                <h1 class="font-bold text-3xl">{item.title}</h1>
+                <p class="font-medium text-lg">{`Artista(s): ${item.artists.join(", ")}`}</p>
+                <p class="font-medium text-lg">{`Tipo: ${item.type}`}</p>
+                <p class="font-medium text-lg">{`Estado: ${
+                  item.status === "public" ? "Público" : "Privado"
+                }`}</p>
+              </div>
+            </div>
+          </div>
+        ))
+    }
+  </div>
+</Layout>

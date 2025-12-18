@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+    --font-sans: "Geist", sans-serif;
+    --font-text: "Manrope", sans-serif;
+    --font-title: "Bebas Neue", sans-serif;
+    --font-mono: "Space Grotesk", sans-serif;
+    --accent: rgb(184, 220, 255);
+}
+
+
+  hr {
+    border: none;
+    border-top: 1px solid #e5e5e5;
+    margin: 1.5rem 0;
+  }
